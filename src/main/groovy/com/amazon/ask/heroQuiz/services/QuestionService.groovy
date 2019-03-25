@@ -38,7 +38,6 @@ class QuestionService {
         ScanResult result = amazonDynamoDBClient.scan(req)
         List quizItems = result.items
         tableRowCount = quizItems.size()
-        //session.setAttribute("tableRowCount", Integer.toString(tableRowCount))
         log.info("This many rows in the table:  " + tableRowCount)
     }
 
@@ -93,25 +92,6 @@ class QuestionService {
         newItem.withInt("id", questionIndex)
         newItem.withInt("asked", askedCount)
         newItem.withInt("correct", correctCount)
-        table.putItem(newItem)
-    }
-
-    void userMetrics(String userId, int score) {
-        DynamoDB dynamoDB = new DynamoDB(new AmazonDynamoDBClient())
-        Table table = dynamoDB.getTable("StarWarsQuizUserMetrics")
-        Item item = table.getItem("id", userId)
-        int timesPlayed = 0
-        int correctCount = 0
-        if (item != null) {
-            timesPlayed = item.getInt("timesPlayed")
-            correctCount = item.getInt("lifeTimeCorrect")
-        }
-        timesPlayed++
-        correctCount += score
-        Item newItem = new Item()
-        newItem.withString("id", userId)
-        newItem.withInt("timesPlayed", timesPlayed)
-        newItem.withInt("lifeTimeCorrect", correctCount)
         table.putItem(newItem)
     }
 

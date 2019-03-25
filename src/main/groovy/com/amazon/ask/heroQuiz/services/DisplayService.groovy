@@ -9,8 +9,6 @@ import com.amazon.ask.model.interfaces.display.ImageInstance
 import com.amazon.ask.model.interfaces.display.RichText
 import com.amazon.ask.model.interfaces.display.Template
 import com.amazon.ask.model.interfaces.display.TextContent
-import com.amazon.ask.model.interfaces.system.SystemState
-
 import javax.inject.Singleton
 
 @Singleton
@@ -69,16 +67,17 @@ class DisplayService {
                 .withBackgroundImage(getImageInstance("https://media.giphy.com/media/YJNOIvcwG1NcY/giphy.gif"))
                 .withTitle("Unofficial Star Wars Quiz")
                 .withTextContent(getTextContent(cardText, cardText))
-                .build();
+                .build()
 
     }
 
+
     Image getImageInstance(String imageUrl) {
-        List<ImageInstance> instances = new ArrayList<>();
+        List<ImageInstance> instances = new ArrayList<>()
         ImageInstance instance = ImageInstance.builder()
                 .withUrl(imageUrl)
-                .build();
-        instances.add(instance);
+                .build()
+        instances.add(instance)
         instances
         Image.builder()
                 .withSources(instances).build()
@@ -88,12 +87,12 @@ class DisplayService {
         return TextContent.builder()
                 .withPrimaryText(makeRichText(primaryText))
                 .withSecondaryText(makeRichText(secondaryText))
-                .build();
+                .build()
     }
 
     RichText makeRichText(String text) {
         return RichText.builder()
                 .withText(text)
-                .build();
+                .build()
     }
 }

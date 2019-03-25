@@ -9,15 +9,16 @@ import com.amazon.ask.model.LaunchRequest
 import com.amazon.ask.model.Response
 import com.amazon.ask.model.Session
 import com.amazon.ask.model.SupportedInterfaces
-import com.amazon.ask.model.interfaces.display.DisplayInterface
-import com.amazon.ask.model.interfaces.system.SystemState
 import com.amazon.ask.request.Predicates
 import groovy.transform.CompileStatic
 import io.micronaut.context.annotation.Value
-
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * You can make a intent handler it's own class like this or add it as a method annotated
+ * with @IntentHandler in the main application.
+ */
 @Singleton
 @CompileStatic
 class LaunchRequestHandler implements RequestHandler {
@@ -65,11 +66,36 @@ class LaunchRequestHandler implements RequestHandler {
 
         speechText = speechText + question.getSpeechText()
         cardText = cardText + question.getCardText(displayService.isSupportDisplay(session))
+
+
+        //return askResponse(input,cardText,speechText,displayService.isSupportDisplay(session))
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("Unofficial Star Wars Quiz", cardText)
+                .addRenderTemplateDirective(displayService.buildBodyTemplate1(cardText))
                 .withReprompt(speechText)
                 .build()
+    }
+
+
+    Optional<Response> askResponse(HandlerInput input, String cardText, String speechText, boolean supportDisplay) {
+
+
+        if (supportDisplay) {
+            input.getResponseBuilder()
+                    .withSpeech(speechText)
+                    .withReprompt(speechText)
+                    .addRenderTemplateDirective(displayService.buildBodyTemplate1(cardText))
+                    .withSimpleCard(speechText, speechText)
+                    .build()
+        } else {
+            input.getResponseBuilder()
+                    .withSpeech(speechText)
+                    .withReprompt(speechText)
+                    .withSimpleCard(speechText, speechText)
+                    .build()
+        }
+
     }
 
 }

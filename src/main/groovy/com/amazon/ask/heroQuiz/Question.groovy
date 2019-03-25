@@ -4,7 +4,7 @@ package com.amazon.ask.heroQuiz
  * Created by lfox on 6/16/16.
  */
 class Question implements Serializable {
-    private static final long serialVersionUID = 1L; // try never to change
+    private static final long serialVersionUID = 1L // try never to change
 
     String question
     String[] options

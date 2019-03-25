@@ -11,16 +11,6 @@ import com.amazon.ask.model.IntentRequest
 import com.amazon.ask.model.Response
 import com.amazon.ask.model.Session
 import com.amazon.ask.model.Slot
-import com.amazon.ask.model.interfaces.display.BodyTemplate1
-import com.amazon.ask.model.interfaces.display.Image
-import com.amazon.ask.model.interfaces.display.ImageInstance
-import com.amazon.ask.model.interfaces.display.RenderTemplateDirective
-import com.amazon.ask.model.interfaces.display.RichText
-import com.amazon.ask.model.interfaces.display.Template
-import com.amazon.ask.model.interfaces.display.TextContent
-import com.amazon.ask.model.ui.PlainTextOutputSpeech
-import com.amazon.ask.model.ui.Reprompt
-import com.amazon.ask.model.ui.SimpleCard
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 import io.micronaut.function.aws.alexa.AlexaIntents
@@ -48,7 +38,7 @@ class AlexaApplication {
         this.answerService = answerService
     }
 
-// end::class[]
+
 
     @IntentHandler(AlexaIntents.HELP)
     Optional<Response> help(HandlerInput input) {
@@ -65,7 +55,7 @@ class AlexaApplication {
         String speechText = "Sorry, I don't know that. You can say try saying help!"
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("HelloWorld", speechText)
+                .withSimpleCard("Star Wars Quiz", speechText)
                 .withReprompt(speechText)
                 .build()
     }
@@ -74,7 +64,7 @@ class AlexaApplication {
     Optional<Response> cancel(HandlerInput input) {
         return input.getResponseBuilder()
                 .withSpeech("Goodbye")
-                .withSimpleCard("HelloWorld", "Goodbye")
+                .withSimpleCard("Star Wars Quiz", "Goodbye")
                 .build()
     }
 
@@ -102,17 +92,10 @@ class AlexaApplication {
         Session session = input.getRequestEnvelope().getSession()
         Question question = (Question) session.attributes.get("lastQuestionAsked")
         String speechText = ""
-
         speechText += question.getSpeechText()
         askResponse(input,speechText, speechText, isSupportDisplay(session))
-
-
     }
 
-    @IntentHandler("DontKnowIntent")
-    public Optional<Response> dontKnowIntent(HandlerInput input) {
-
-    }
 
     boolean isSupportDisplay(Session session) {
         boolean supportDisplay = (Boolean) session.attributes.get("supportDisplay")
@@ -139,6 +122,5 @@ class AlexaApplication {
 
     }
 
-
-
 }
+// end::class[]
