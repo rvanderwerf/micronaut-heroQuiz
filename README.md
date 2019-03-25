@@ -69,3 +69,6 @@ To set up the quiz you still need to grant DynamoDB read/write access to the rol
 
 
 Follow the instructions in [the tutorial](https://alexa-skills-kit-sdk-for-java.readthedocs.io/en/latest/Developing-Your-First-Skill.html) for how to deploy the Alexa Skill.
+
+
+Feel free to use this under Apache 2 license.

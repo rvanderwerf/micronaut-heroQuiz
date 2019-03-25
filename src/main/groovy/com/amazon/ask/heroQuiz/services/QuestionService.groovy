@@ -18,6 +18,12 @@ import javax.annotation.PostConstruct
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * Service to handle the getting of quiz questions.
+ *
+ * @author Ryan Vanderwerf
+ * @author Lee Fox
+ */
 @Singleton
 @Slf4j
 class QuestionService {

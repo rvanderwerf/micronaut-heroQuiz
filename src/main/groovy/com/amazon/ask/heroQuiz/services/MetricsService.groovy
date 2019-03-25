@@ -9,6 +9,12 @@ import groovy.util.logging.Slf4j
 import javax.annotation.PostConstruct
 import javax.inject.Singleton
 
+/**
+ * Saves metrics for app and user usage in DynamoDB
+ *
+ * @author Lee Fox
+ * @author Ryan Vanderwerf
+ */
 @Singleton
 @Slf4j
 class MetricsService {

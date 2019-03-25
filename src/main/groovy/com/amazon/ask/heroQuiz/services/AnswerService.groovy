@@ -9,6 +9,12 @@ import groovy.util.logging.Slf4j
 import javax.inject.Inject
 import javax.inject.Singleton
 
+/**
+ * Helper class to process and return a response to a question (answer)
+ *
+ * @author Ryan Vanderwerf
+ * @author Lee Fox
+ */
 @Singleton
 @Slf4j
 class AnswerService {

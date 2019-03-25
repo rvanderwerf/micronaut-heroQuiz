@@ -11,6 +11,11 @@ import com.amazon.ask.model.interfaces.display.Template
 import com.amazon.ask.model.interfaces.display.TextContent
 import javax.inject.Singleton
 
+/**
+ * Helps generates responses for the right device type.
+ *
+ * @author Ryan Vanderwerf
+ */
 @Singleton
 class DisplayService {
 

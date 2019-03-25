@@ -19,6 +19,12 @@ import javax.inject.Singleton
 // end::imports[]
 
 // tag::class[]
+/**
+ * Main entry point class for the Alexa Skill.
+ *
+ * @author Ryan Vanderwerf
+ * @author Graeme Rocher
+ */
 @Singleton // <1>
 @CompileStatic
 @Slf4j
